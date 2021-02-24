@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import ImageList from "./components/image_list/ImageList";
+import TwoUp from "./components/2_up/TwoUp";
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-lime-400 text-white w-screen h-screen grid grid-cols-2 grid-rows-6">
+      <div className="p-3">
+        <ImageList type="OLD" img="" imgPath="./image/01.png"/>
+      </div>
+      <div className="p-3">
+        <ImageList type="NEW" img="" imgPath="./image/02.png"/>
+      </div>
+      <div className="col-span-2 row-span-5 p-3">
+        <TwoUp />
+      </div>
+      
     </div>
   );
 }
