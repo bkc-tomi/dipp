@@ -4,6 +4,8 @@ import Body from "./components/body/Body";
 
 const initialState = {
   type : '2-Up',
+  old  : null,
+  new  : null,
 } 
 
 function reducer(state, action) {
@@ -13,6 +15,17 @@ function reducer(state, action) {
         ...state,
         type: action.payload
       };
+    case "CHANGE_OLD":
+      return {
+        ...state,
+        old: action.payload
+      };
+
+    case "CHANGE_NEW":
+      return {
+        ...state,
+        new: action.payload
+      }
     default : 
       return state
   }

@@ -10,21 +10,23 @@ import React from "react";
  * }
  */
 const Thumbnail = (props) => {
+    // 各種変数定義 ==================================================================
     const applyCls = props.cls
-        ? `rounded-lg ${ props.cls }`
-        : `rounded-lg`;
-
+    ? `rounded-lg ${ props.cls }`
+    : `rounded-lg`;
+    
     var size = {
         width: props.size + "px",
         height: props.size + "px",
     }
+    // 要素返却 ======================================================================
     if (props.src) {
         return (
             <img 
-                className={ applyCls }
-                style={ size }
-                src={ props.src }
-                alt={ props.alt }
+            className={ applyCls }
+            style={ size }
+            src={ props.src }
+            alt={ props.alt }
             />
         );
     }

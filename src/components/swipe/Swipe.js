@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Tab from "../common/Tab";
 import Button from "../common/Button";
 import Slider from "../common/Slider";
+import { SiteContext } from "../../App";
 
 /**
  * Swipe
  * スワイプでは画像の部分を重ねて表示することができます。 新旧画像間でなされた微妙な色変更がわかりづらいといった場合、 スワイプスライダーを問題の領域までドラッグして注目すると、違いが見えてきます。
  * @param props {  
- *     children: HTMLElement  
  * }
  */
-const Swipe = (props) => {
+const Swipe = () => {
+    // 変数定義 ===========================================================================
+    const { state } = useContext(SiteContext);
+
     const list = [
         {name: "2-Up", active: false},
         {name: "Swipe", active: true},
@@ -23,7 +26,14 @@ const Swipe = (props) => {
                 <Tab items={ list } />
             </div>
             <div className="row-span-4 justify-start items-center">
-                
+            <div className="relative w-full h-full">
+                    <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+                        <img src={ state.old ? state.old.path : "" } alt="old" />
+                    </div>
+                    <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
+                        <img src={ state.new ? state.new.path : "" } alt="new" />
+                    </div>
+                </div>
             </div>
             <div className="flex justify-center items-end">
                 <div className="bg-gray-900 rounded-lg w-full grid grid-cols-6">
