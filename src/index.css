@@ -1,3 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type="range"] {
+    -webkit-appearance: none; /* 🚩これ無しだとスタイルがほぼ全く反映されないので注意 */
+    appearance: none;
+    cursor: pointer; /* カーソルを分かりやすく */
+    outline: 0; /* スライダーのアウトラインは見た目がキツイので消す */
+    height: 5px; /* バーの高さ */
+    width: 100%; /* バーの幅 */
+    background: #000000; /* バーの背景色 */
+  }
+  /* WebKit向けプログレスバー */
+  input[type="range"]::-webkit-progress-value {
+    -webkit-appearance: none;
+    background: #A3E635;
+  }
+  /* input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    background: #A3E635;
+  } */
+  /* WebKit向けのつまみ */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /*  🚩デフォルトのつまみのスタイルを解除 */
+    background: #A3E635; /* 背景色 */
+    width: 10px; /* 幅 */
+    height: 24px; /* 高さ */
+    border-radius: 5px; /* 円形に */
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15); /* 影 */
+  }
+  /* Moz向けのプログレスバー */
+  input[type=range]::-moz-range-progress {
+    background-color: #A3E635;
+  }
+  /* Moz向けのつまみ */
+  input[type="range"]::-moz-range-thumb {
+    background: #A3E635; /* 背景色 */
+    width: 10px; /* 幅 */
+    height: 24px; /* 高さ */
+    border-radius: 5px; /* 円形に */
+    border: none; /* デフォルトの線を消す */
+  }
+  /* Firefoxで点線が周りに表示されてしまう問題の解消 */
+  input[type="range"]::-moz-focus-outer {
+    border: 0;
+  }
+  /* つまみをドラッグしているときのスタイル */
+  input[type="range"]:active::-webkit-slider-thumb {
+    box-shadow: 0px 5px 10px -2px rgba(0, 0, 0, 0.3);
+  }

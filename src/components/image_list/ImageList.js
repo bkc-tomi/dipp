@@ -25,7 +25,7 @@ const ImageList = (props) => {
                 <Text>{ props.imgPath }</Text>
             </div>
             <div className="flex justify-center items-center">
-                <Button cls="p-2 px-4">OPEN</Button>
+                <Button id={ props.id } cls="p-2 px-4">OPEN</Button>
             </div>
         </div>
     );

@@ -3,42 +3,37 @@ import React, { useState } from "react";
 /**
  * スライダー　★未実装
  * @param props {  
- *     cls     : string(tailwind css class),  
  *     id      : string,  
  *     name    : string,  
  *     children: HTMLElement  
  * }
  */
 const Slider = (props) => {
-    const [value, setValue] = useState(50);
+    const [value, setValue] = useState(0);
 
-    const slide = () => {
+    const slide = (e) => {
         const slider = document.getElementById(props.id);
         setValue(slider.value);
     }
-    var width = {
-        width: value + "%",
-    }
 
-    const applyCls = `bg-lime-400 h-1.5 ${ props.cls }`;
+    var rangeStyle = {
+        width: "100%",
+    }
     return (
-        <div>
-            <div className="hidden">
+        <div className="w-full">
+            <div style={ rangeStyle }>
                 <input 
                     type="range" id={ props.id } 
+                    className="border border-gray-400 rounded-full"
                     name={ props.name } 
-                    min="0" max="100" 
+                    min="0" max="100"
+                    value={ value }
                     onChange={ () => slide() }
                 />
             </div>
-            <div className="bg-black rounded-full overflow-hidden">
-                <div 
-                    className={ applyCls }
-                    style={ width }
-                    role="progressbar"
-                ></div>
+            <div className="w-full flex justify-end">
+                <label className="text-gray-400" for={ props.name }>{ value } / { props.children }</label>
             </div>
-            <label for={ props.name }>{ props.children }</label>
         </div>
     );
 }
