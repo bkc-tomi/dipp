@@ -16,10 +16,6 @@ input[type="range"] {
     -webkit-appearance: none;
     background: #A3E635;
   }
-  /* input[type="range"]::-webkit-slider-runnable-track {
-    -webkit-appearance: none;
-    background: #A3E635;
-  } */
   /* WebKit向けのつまみ */
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none; /*  🚩デフォルトのつまみのスタイルを解除 */
