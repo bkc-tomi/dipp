@@ -5,15 +5,17 @@ import React, { useState } from "react";
  * @param props {  
  *     id      : string,  
  *     name    : string,  
+ *     func    : function,
  *     children: HTMLElement  
  * }
  */
 const Slider = (props) => {
     const [value, setValue] = useState(0);
 
-    const slide = (e) => {
+    const slide = () => {
         const slider = document.getElementById(props.id);
         setValue(slider.value);
+        props.func(slider.value / 100);
     }
 
     var rangeStyle = {

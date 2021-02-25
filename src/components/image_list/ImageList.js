@@ -3,7 +3,8 @@ import Button from "../common/Button";
 import Thumbnail from "../common/Thumbnail";
 import LimeText from "../common/LimeText";
 import Text from "../common/Text";
-import { SiteContext} from "../../App";
+import { SiteContext } from "../../App";
+import LoadImage from "../../common_func/LoadImage";
 
 /**
  * 画像情報表示エリア
@@ -20,30 +21,48 @@ const ImageList = (props) => {
     const [img, setImg] = useState(null);
 
     // ドラッグ＆ドロップで画像読み込み ===============================================
-    const drop = (e) => {
+    const drop = async(e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        for (const f of e.dataTransfer.files) {
-            switch (props.type) {
-                case "OLD":
-                    dispatch({
-                        type: "CHANGE_OLD",
-                        payload: f,
-                    });
-                    setImg(f);
-                    return;
-                case "NEW":
-                    dispatch({
-                        type: "CHANGE_NEW",
-                        payload: f,
-                    });
-                    setImg(f);
-                    return;
-                default:
-                    return;
+        // ファイル取得 ===========================================================
+        const f = e.dataTransfer.files;
+        const file = f[0];
+        if (!file || file.type.indexOf('image/') < 0) {
+            return;
+        }
+        
+        // 画像情報取得 ============================================================
+        let image;
+        await (async() => {
+            const res = await LoadImage(file);
+            console.log(res);
+            image = {
+                src: file.path,
+                name: file.name,
+                width: res.width,
+                height: res.height,
             }
+        })();
 
+        // グローバルステートに追加 ==================================================
+        switch (props.type) {
+            case "OLD":
+                dispatch({
+                    type: "CHANGE_OLD",
+                    payload: image,
+                });
+                setImg(image);
+                return;
+            case "NEW":
+                dispatch({
+                    type: "CHANGE_NEW",
+                    payload: image,
+                });
+                setImg(image);
+                return;
+            default:
+                return;
         }
     }
     // イベントのキャンセル =============================================================
@@ -60,7 +79,7 @@ const ImageList = (props) => {
             onDragOver={ (e) => dragover(e) }
         >
             <div className="flex justify-start items-center">
-                <Thumbnail src={ img ? img.path : "" } alt="" size="80" />
+                <Thumbnail src={ img ? img.path : "" } alt={ img ? img.name : "" } size="80" />
             </div>
             <div className="col-span-4 justify-start items-center overflow-hidden">
                 <LimeText cls="text-2xl font-extrabold">{ props.type }</LimeText>
