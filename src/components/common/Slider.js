@@ -5,20 +5,26 @@ import React, { useState } from "react";
  * @param props {  
  *     id      : string,  
  *     name    : string,  
+ *     func    : function,
  *     children: HTMLElement  
  * }
  */
 const Slider = (props) => {
+    // 変数定義 ================================================================
     const [value, setValue] = useState(0);
-
-    const slide = (e) => {
-        const slider = document.getElementById(props.id);
-        setValue(slider.value);
-    }
 
     var rangeStyle = {
         width: "100%",
     }
+
+    // 関数定義 ================================================================
+    const slide = () => {
+        const slider = document.getElementById(props.id);
+        setValue(slider.value);
+        props.func(slider.value);
+    }
+    
+    // 要素返却 ================================================================
     return (
         <div className="w-full">
             <div style={ rangeStyle }>
