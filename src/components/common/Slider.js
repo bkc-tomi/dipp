@@ -10,17 +10,21 @@ import React, { useState } from "react";
  * }
  */
 const Slider = (props) => {
+    // 変数定義 ================================================================
     const [value, setValue] = useState(0);
-
-    const slide = () => {
-        const slider = document.getElementById(props.id);
-        setValue(slider.value);
-        props.func(slider.value / 100);
-    }
 
     var rangeStyle = {
         width: "100%",
     }
+
+    // 関数定義 ================================================================
+    const slide = () => {
+        const slider = document.getElementById(props.id);
+        setValue(slider.value);
+        props.func(slider.value);
+    }
+    
+    // 要素返却 ================================================================
     return (
         <div className="w-full">
             <div style={ rangeStyle }>

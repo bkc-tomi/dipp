@@ -14,13 +14,16 @@ import { SiteContext } from "../../App";
 const Swipe = () => {
     // 変数定義 ===========================================================================
     const { state } = useContext(SiteContext);
-
+    // 機能リスト
     const list = [
         {name: "2-Up", active: false},
         {name: "Swipe", active: true},
         {name: "Onion", active: false},
     ];
 
+    // 関数定義 ============================================================================
+    // スワイプ
+    // 要素返却 ============================================================================
     return (
         <div className="grid grid-row-6 bg-gray-800 rounded-lg shadow-md w-full h-full">
             <div className="flex justify-start items-start m-3">

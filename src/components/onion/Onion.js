@@ -14,7 +14,7 @@ import { SiteContext } from "../../App";
 const Onion = () => {
     // 変数定義 ===========================================================================
     const { state } = useContext(SiteContext);
-
+    // 機能リスト
     const list = [
         {name: "2-Up", active: false},
         {name: "Swipe", active: false},
@@ -22,9 +22,10 @@ const Onion = () => {
     ]
 
     // 関数定義 ===========================================================================
+    // 透明度変更
     const changeOpacity = (num) => {
         const elem = document.getElementById("onion-new-img");
-        elem.style.opacity = num;
+        elem.style.opacity = num / 100;
     }
 
     // 要素返却 ===========================================================================
@@ -40,7 +41,7 @@ const Onion = () => {
                     </div>
                     <div 
                         id="onion-new-img"
-                        className="absolute top-0 left-0 w-full h-full flex justify-center items-center"
+                        className="absolute top-0 left-0 w-full h-full flex justify-center items-center opacity-0"
                     >
                         <img src={ state.new ? state.new.src : "" } alt="new" />
                     </div>
@@ -49,12 +50,12 @@ const Onion = () => {
             <div className="flex flex-col justify-end items-center">
                 <div className="grid grid-cols-2 w-full mb-3">
                     <div className="flex flex-col justify-center items-center text-gray-400">
-                        <GrayText>width: { state.old ? state.old.width : "" }</GrayText>
-                        <GrayText>height: { state.old ? state.old.height : "" }</GrayText>
+                        <GrayText>width: { state.old ? state.old.width : "" } - height: { state.old ? state.old.height : "" }</GrayText>
+                        <GrayText>update_at: { state.old ? state.old.update_at.toLocaleString("ja") : "" }</GrayText>
                     </div>
                     <div className="flex flex-col justify-center items-center text-gray-400">
-                        <GrayText>width: { state.new ? state.new.width : "" }</GrayText>
-                        <GrayText>height: { state.new ? state.new.height : "" }</GrayText>
+                        <GrayText>width: { state.new ? state.new.width : "" } - height: { state.new ? state.new.height : "" }</GrayText>
+                        <GrayText>update_at: { state.new ? state.new.update_at.toLocaleString("ja") : "" }</GrayText>
                     </div>
                 </div>
                 <div className="bg-gray-900 rounded-lg w-full grid grid-cols-6">
