@@ -20,42 +20,26 @@ const ImageList = (props) => {
     const { state, dispatch } = useContext(SiteContext);
     const [img, setImg] = useState(null);
 
-    useEffect(() => {
-        switch (props.type) {
-            case "OLD":
-                if (state.old) {
-                    setImg(state.old);
-                }
-                return;
-            case "NEW":
-                if (state.new) {
-                    setImg(state.new);
-                }
-                return;
-            default:
-                return
-        }
-    }, [setImg, props.type, state.new, state.old]);
-
+    
     // ドラッグ＆ドロップで画像読み込み ===============================================
     const drop = async(e) => {
         e.preventDefault();
         e.stopPropagation();
-
+        
         // ファイル取得 ===========================================================
         const files = e.dataTransfer.files;
-
+        
         // 画像情報取得 ============================================================
         const image = await GetImage(files);
         if (image.err) {
             var msg = `
-error message: ${ image.errMsg }
-画像ファイル意外の物が選択された可能性があります。
-詳しくはコンソールを参照してください。`;
+            error message: ${ image.errMsg }
+            画像ファイル意外の物が選択された可能性があります。
+            詳しくはコンソールを参照してください。`;
             alert(msg);
             return;
         }
-
+        
         // グローバルステートに追加 ==================================================
         switch (props.type) {
             case "OLD":
@@ -74,7 +58,7 @@ error message: ${ image.errMsg }
                     dispatch({ type: "CHANGE_OLD", payload: image });
                 }
                 return;
-                case "NEW":
+            case "NEW":
                 if (state.old) {
                     // 古い画像がある場合は比較してセット
                     const oldImg = state.old;
@@ -92,14 +76,31 @@ error message: ${ image.errMsg }
                 return;
             default:
                 return;
+            }
         }
-    }
-    // イベントのキャンセル =============================================================
-    const dragover = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-    }
-
+        // イベントのキャンセル =============================================================
+        const dragover = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        // 再レンダー =====================================================================
+        useEffect(() => {
+            switch (props.type) {
+                case "OLD":
+                    if (state.old.type) {
+                        setImg(state.old);
+                    }
+                    return;
+                case "NEW":
+                    if (state.new.type) {
+                        setImg(state.new);
+                    }
+                    return;
+                default:
+                    return;
+            }
+        }, [setImg, props.type, state.new, state.old]);
     // 要素の返却 =====================================================================
     if (img) {
         // 画像がある場合

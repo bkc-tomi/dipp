@@ -1,11 +1,31 @@
 import React, { useReducer } from "react";
 import ImageList from "./components/image_list/ImageList";
 import Body from "./components/body/Body";
+import NoImage from "./assets/img/noimage.png";
+import NoImage2 from "./assets/img/noimage2.png";
+
+const date = new  Date();
 
 const initialState = {
   type : '2-Up',
-  old  : null,
-  new  : null,
+  old  : {
+    src       : NoImage,
+    name      : "noimage",
+    width     : 600,
+    height    : 400,
+    update_at : date,
+    type      : null,
+    size      : null,
+  },
+  new  : {
+    src       : NoImage2,
+    name      : "noimage2",
+    width     : 600,
+    height    : 400,
+    update_at : date,
+    type      : null,
+    size      : null,
+  },
 } 
 
 function reducer(state, action) {
