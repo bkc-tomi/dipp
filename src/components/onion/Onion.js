@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Tab from "../common/Tab";
 import Button from "../common/Button";
 import Slider from "../common/Slider";
+import Alert from "../common/Alert";
 import { SiteContext } from "../../App";
 import { saveImage } from "../../common_func/Media";
 
@@ -13,7 +14,7 @@ import { saveImage } from "../../common_func/Media";
  */
 const Onion = () => {
     // 変数定義 ===========================================================================
-    const { state } = useContext(SiteContext);
+    const { state, dispatch } = useContext(SiteContext);
     // 画像情報
     const [oldImg, setOldImg] = useState(state.old);
     const [newImg, setNewImg] = useState(state.new);
@@ -55,7 +56,10 @@ const Onion = () => {
         var oSize = state.old.width * state.old.height;
         var nSize = state.new.width * state.new.height;
         if (oSize !== nSize) {
-            alert("画像のサイズが異なるため新しい画像のサイズに統一しました。アスペクト比が崩れる可能性があります。");
+            // メッセージ追加
+            const newMsgs = state.messages;
+            newMsgs.push("画像のサイズが異なるため新しい画像のサイズに統一しました。アスペクト比が崩れる可能性があります。");
+            dispatch({ type: "UPDATE_MESSAGE", payload: newMsgs });
         }
     }, [newImg, oldImg, state.old, state.new]);
 
@@ -94,6 +98,7 @@ const Onion = () => {
                     </div>
                 </div>
             </div>
+            <Alert />
         </div>
     );
 }

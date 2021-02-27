@@ -19,7 +19,7 @@ const Tab = (props) => {
     const innerStyle = {
         width: "130px",
         height: "50px",
-        transition: "all 300ms 0s ease;",
+        transition: "all 300ms 0s ease",
     }
     
     let tabList = <div></div>
@@ -30,6 +30,7 @@ const Tab = (props) => {
                     <div 
                         className="box-border bg-gray-800 border border-white rounded-lg flex justify-center items-center cursor-pointer"
                         style={ innerStyle }
+                        key={ item.name }
                         onClick={ () => dispatch({
                             type: "CHANGE_TYPE",
                             payload: item.name
@@ -43,6 +44,7 @@ const Tab = (props) => {
                 <div 
                         className="box-border rounded-lg flex justify-center items-center cursor-pointer"
                         style={ innerStyle }
+                        key={ item.name }
                         onClick={ () => dispatch({
                             type: "CHANGE_TYPE",
                             payload: item.name
