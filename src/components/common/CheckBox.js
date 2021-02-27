@@ -13,12 +13,12 @@ import React, { useState } from "react";
 const CheckBox = (props) => {
     const [checked, setChecked] = useState(false);
 
-    const changeCheck = () => {
+    const handleFunc = () => {
+        if (props.func) {
+            props.func();
+        }
         if (!checked) {
             setChecked(true);
-            if (props.func) {
-                props.func();
-            }
         } else {
             setChecked(false);
         }
@@ -26,7 +26,7 @@ const CheckBox = (props) => {
 
     if (!checked) {
         return (
-            <div className="inline-block px-3 cursor-pointer text-lime-400 border border-lime-400 bg-opacity-0" onClick={ () => changeCheck() }>
+            <div className="inline-block px-3 cursor-pointer text-lime-400 border border-lime-400 bg-opacity-0" onClick={ () => handleFunc() }>
                 <div className="hidden">
                     <input type="checkbox" id={ props.id } name={ props.name } value={ props.value } checked={ checked }/>
                 </div>
@@ -47,9 +47,9 @@ const CheckBox = (props) => {
         );
     } else {
         return (
-            <div className="inline-block px-3 cursor-pointer text-white bg-lime-400 border border-lime-400" onClick={ () => changeCheck() }>
+            <div className="inline-block px-3 cursor-pointer text-white bg-lime-400 border border-lime-400" onClick={ () => handleFunc() }>
                 <div className="hidden">
-                    <input type="checkbox" name={ props.name } value={ props.value } checked={ checked }/>
+                    <input type="checkbox" id={ props.id } name={ props.name } value={ props.value } checked={ checked }/>
                 </div>
                 <label className="flex flex-row items-center">
                     <div className="mr-2">
