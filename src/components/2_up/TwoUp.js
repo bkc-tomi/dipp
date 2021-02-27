@@ -3,6 +3,7 @@ import Tab from "../common/Tab";
 import CheckBox from "../common/CheckBox";
 import Button from "../common/Button";
 import { SiteContext } from "../../App";
+import { saveImage } from "../../common_func/Media";
 
 /**
  * 2-Up
@@ -86,7 +87,7 @@ const TwoUp = () => {
             <div className="flex justify-start items-start m-3">
                 <Tab items={ list }/>
             </div>
-            <div className="row-span-4 flex justify-start items-start ">
+            <div id="two-up-capture" className="row-span-4 flex justify-start items-start">
                 <div className="flex justify-center items-center w-1/2 h-full">
                     <img src={ oldImg.src } alt="old" style={ oldSize } />
                 </div>
@@ -98,7 +99,7 @@ const TwoUp = () => {
                 <div className="bg-gray-900 rounded-lg w-full flex justify-center">
                     <div className="">
                         <CheckBox id="two-up-same-ratio" value="same" cls="m-3" func={ () => changeSameRatio() }>SAME RATIO</CheckBox>
-                        <Button cls="py-2 px-4 m-3 ml-24">SAVE</Button>
+                        <Button cls="py-2 px-4 m-3 ml-24" func={() => saveImage("two-up-capture", newImg.name) }>SAVE</Button>
                     </div>
                 </div>
             </div>

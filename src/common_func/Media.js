@@ -1,3 +1,5 @@
+import html2canvas from "html2canvas";
+
 /**
  * 画像情報取得関数
  * - 引数 -  
@@ -108,4 +110,33 @@ export const GetImage = async(files) => {
         console.log(error);
         return err;
     }
+}
+
+
+export const saveImage = (targetId, name) => {
+    const target = document.getElementById(targetId);
+    html2canvas(target).then(canvas => {
+        const targetImgUri = canvas.toDataURL("img/png");
+
+        const downloadLink = document.createElement("a");
+        
+        if (typeof downloadLink.download === "string") {
+          downloadLink.href = targetImgUri;
+        
+          // ファイル名
+          const date = new Date();
+          downloadLink.download = `diff- ${name} - ${date.toLocaleString("ja")}.png`;
+        
+          // Firefox では body の中にダウンロードリンクがないといけないので一時的に追加
+          document.body.appendChild(downloadLink);
+        
+          // ダウンロードリンクが設定された a タグをクリック
+          downloadLink.click();
+        
+          // Firefox 対策で追加したリンクを削除しておく
+          document.body.removeChild(downloadLink);
+        } else {
+          window.open(targetImgUri);
+        }
+    });
 }

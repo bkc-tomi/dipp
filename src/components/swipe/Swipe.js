@@ -3,6 +3,7 @@ import Tab from "../common/Tab";
 import Button from "../common/Button";
 import Slider from "../common/Slider";
 import { SiteContext } from "../../App";
+import { saveImage } from "../../common_func/Media";
 
 /**
  * Swipe
@@ -65,7 +66,7 @@ const Swipe = () => {
             <div className="flex justify-start items-start m-3">
                 <Tab items={ list } />
             </div>
-            <div className="row-span-4 justify-start items-center">
+            <div id="swipe-capture" className="row-span-4 justify-start items-center">
             <div className="relative h-full">
                     <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center" >
                         <img id="swipe-old-img" src={ oldImg.src } alt="old" style={ oldSize } />
@@ -86,7 +87,7 @@ const Swipe = () => {
                         <Slider id="swipe" size={400} func={ (num) => changeWidth(num) }>100</Slider>
                     </div>
                     <div className="col-span-2">
-                        <Button cls="py-2 px-4 m-3 ml-24">SAVE</Button>
+                        <Button cls="py-2 px-4 m-3 ml-24" func={() => saveImage("swipe-capture", newImg.name) }>SAVE</Button>
                     </div>
                 </div>
             </div>
