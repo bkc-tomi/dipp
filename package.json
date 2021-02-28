@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.3",
     "electron-is-dev": "^1.2.0",
+    "html2canvas": "^1.0.0-rc.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
@@ -53,5 +54,19 @@
     "postcss": "^7.0.35",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
     "wait-on": "^5.2.1"
+  },
+  "build": {
+    "mac": {
+      "target": "dmg",
+      "icon": "build/dipp_big.png"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/dipp_big.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }

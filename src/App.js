@@ -26,6 +26,7 @@ const initialState = {
     type      : null,
     size      : null,
   },
+  messages : [],
 } 
 
 function reducer(state, action) {
@@ -46,8 +47,13 @@ function reducer(state, action) {
         ...state,
         new: action.payload
       }
+    case "UPDATE_MESSAGE":
+      return {
+        ...state,
+        messages: action.payload,
+      }
     default : 
-      return state
+      return state;
   }
 }
 
@@ -65,7 +71,7 @@ const App = () => {
 
   return (
     <SiteProvider>
-      <div className="bg-lime-400 text-white w-screen h-screen grid grid-cols-2 grid-rows-6">
+      <div className="bg-gray-700 text-white w-screen h-screen grid grid-cols-2 grid-rows-6">
         <div className="p-3">
           <ImageList id="open-old" type="OLD" img="" imgPath="./image/01.png"/>
         </div>
