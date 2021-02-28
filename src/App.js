@@ -26,7 +26,7 @@ const initialState = {
     type      : null,
     size      : null,
   },
-  messages : ["メッセージ１", "メッセージ2"],
+  messages : [],
 } 
 
 function reducer(state, action) {

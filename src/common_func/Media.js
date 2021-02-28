@@ -125,7 +125,7 @@ export const saveImage = (targetId, name) => {
         
           // ファイル名
           const date = new Date();
-          downloadLink.download = `diff- ${name} - ${date.toLocaleString("ja")}.png`;
+          downloadLink.download = `${date.toLocaleString("ja")}-diff-${name}}.png`;
         
           // Firefox では body の中にダウンロードリンクがないといけないので一時的に追加
           document.body.appendChild(downloadLink);

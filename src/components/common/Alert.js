@@ -34,7 +34,7 @@ function Alert() {
                         messages.map((msg) => {
                             return (
                                 <div 
-                                    className="bg-lime-400 text-white rounded-lg p-3 my-3 shadow-lg"
+                                    className="bg-gray-700 text-lime-400 rounded-lg p-3 my-3 shadow-lg"
                                     style={{ width: "500px"}}
                                     key={ msg }
                                 >

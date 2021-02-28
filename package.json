@@ -54,5 +54,19 @@
     "postcss": "^7.0.35",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3",
     "wait-on": "^5.2.1"
+  },
+  "build": {
+    "mac": {
+      "target": "dmg",
+      "icon": "build/dipp_big.png"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/dipp_big.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }
